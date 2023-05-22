@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MyProject.Areas.Admin.Models.Category>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>دسته بندی</h1>
+<hr />
+<p style="text-align:right;">
+
+
+    <a asp-action="Create" class=" btn btn-info">ثبت</a>
+</p>
+<table class="table Panel-Body">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleCategory)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IDCategory" class="btn btn-success">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.IDCategory" class="Btn btn-primary">جزییات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IDCategory"class="Btn btn-warning">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

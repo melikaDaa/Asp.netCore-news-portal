@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MyProject.Areas.Admin.Models.News>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>خبر</h1>
+<hr />
+<p style="text-align:right;">
+
+
+    <a asp-action="Create" class=" btn btn-info">ثبت</a>
+</p>
+<table class="table Panel-Body w-100">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NewsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NewsDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.TitleCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.FullName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.TitleCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">ویرایش</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">جزییات</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning">حذف</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

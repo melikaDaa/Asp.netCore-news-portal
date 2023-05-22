@@ -1,0 +1,41 @@
+﻿@model MyProject.Areas.Admin.Models.News
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="Panel-Header">
+    ویرایش
+</div>
+<div class="Panel-Body">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="NewsName" class="control-label"></label>
+                    <input asp-for="NewsName" class="form-control" />
+                    <span asp-validation-for="NewsName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewsDesc" class="control-label"></label>
+                    <input asp-for="NewsDesc" class="form-control" />
+                    <span asp-validation-for="NewsDesc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="ثبت" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-info">بازگشت</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

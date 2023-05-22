@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MyProject.Areas.Admin.Models.News>
+@using Microsoft.AspNetCore.Components.Web
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="Index" method="get">
+  <input type="search" placeholder="لطفا عنوان خبر وارد نمایید" value="@ViewData["GetNewsDetails"]" name="NewsSerach" style="width:500px;" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+
+@foreach (var item in Model)
+{
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3 grid-margin">
+                <div class="rotate-img">
+                    @Html.DisplayFor(modelItem => item.Category.TitleCategory)
+
+                    <img src="~/NewFolder/assets/images/dashboard/2.jpg"
+                         alt="thumb"
+                         class="img-fluid" />
+
+                </div>
+
+            </div>
+            <div class="  grid-margin">
+                <h2 class="mb-2 font-weight-600">
+                    @Html.DisplayFor(modelItem => item.NewsName)
+
+                </h2>
+
+                <div class="panel-body">
+                  @item.NewsDesc
+                </div>
+                <p class="mb-0">
+                    @Html.DisplayFor(modelItem => item.Author.FullName)
+                </p>
+                <div class="fs-13 mb-2">
+                    <span class="mr-2">
+                        @Html.DisplayFor(modelItem => item.DateTimeCreated)
+
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+<script>
+    $(function () {
+        $("basic-text1").click(function () {
+            $("Form").submit();
+        })
+    });
+</script>
+}

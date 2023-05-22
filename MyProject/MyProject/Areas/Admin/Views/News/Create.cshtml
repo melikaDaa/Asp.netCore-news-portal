@@ -1,0 +1,70 @@
+﻿@model MyProject.Areas.Admin.Models.News
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_UserLayout.cshtml";
+}
+<style>
+    /* increase height of ckeditor*/
+    .ck-editor__editable_inline {
+        min-height: 200px;
+    }
+
+</style>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/ckeditor/ckeditor.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="Panel-Header">
+    دسته جدید
+</div>
+<div class="Panel-Body">
+
+    <form asp-controller="News" asp-action="SaveEmp" method="post">
+        <table>
+            <tr>
+                <td>تیتر خبر:</td>
+                <td><input name="name" type="text" class="Text-Control Select-Control" /></td>
+            </tr>
+            <tr>
+                <td>توضیحات:</td>
+                <td><textarea name="description" id="description"></textarea></td>
+            </tr>
+            <tr>
+                <td>دسته :</td>
+                <td> @Html.DropDownList("CategoryList", null, htmlAttributes: new { @class = "Text-Control Select-Control" })</td>
+            </tr>
+            <tr>
+                <td>نام نویسنده :</td>
+                <td> @Html.DropDownList("AuthorList", null, htmlAttributes: new { @class = "Text-Control Select-Control" })</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="Submit1" type="submit" value="ثبت" class="Btn btn-success" />
+                    <a asp-action="Index" class="btn btn-info">بازگشت</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    @section Scripts{
+        <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+        <script>
+            $(document).ready(function () {
+                // ckeditor 5 initialization
+                ClassicEditor
+                    .create(document.getElementById('description'))
+                    .then(editor => {
+                        console.log(editor);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+        </script>
+    }
+</div>
+<div>
+</div>
